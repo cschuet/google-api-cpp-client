@@ -33,6 +33,7 @@ cc_library(
     ],
     deps = [
         ":googleapis_internal",
+        "@com_google_glog//:glog",
     ],
     copts = ["-Wno-unused-local-typedefs", "-Wno-sign-compare"],
     hdrs = [
@@ -75,6 +76,7 @@ cc_library(
     ],
     deps = [
         ":googleapis_http",
+        "@com_google_glog//:glog",
         "@com_github_open_source_parsers_jsoncpp//:jsoncpp",
     ],
     hdrs = [
@@ -104,7 +106,10 @@ cc_library(
         "src/googleapis/client/util/uri_template.cc",
         "src/googleapis/client/util/uri_utils.cc",
     ],
-    deps = [":googleapis_internal"],
+    deps = [
+        ":googleapis_internal",
+        "@com_google_glog//:glog",
+    ],
     hdrs = [
         "src/googleapis/client/data/codec.h",
         "src/googleapis/client/data/base64_codec.h",
@@ -144,7 +149,9 @@ cc_library(
         "src/googleapis/util/status.cc",
     ],
     copts = ["-Wno-sign-compare", "-Wno-unused-local-typedefs", "-Wno-deprecated-declarations"],
-    deps = [],
+    deps = [
+        "@com_google_glog//:glog",
+    ],
     hdrs = [
         "src/googleapis/base/callback-specializations.h",
         "src/googleapis/base/callback-types.h",
