@@ -14,6 +14,62 @@ genrule(
 )
 
 cc_library(
+    name = "googleapis_oauth2",
+    hdrs = [
+        "src/googleapis/client/auth/oauth2_authorization.h",
+        "src/googleapis/client/auth/oauth2_service_authorization.h",
+        "src/googleapis/client/auth/jwt_builder.h",
+    ],
+    srcs = [
+        "src/googleapis/client/auth/oauth2_authorization.cc",
+        "src/googleapis/client/auth/oauth2_service_authorization.cc",
+        "src/googleapis/client/auth/jwt_builder.cc",
+    ],
+    deps = [
+        "@com_github_open_source_parsers_jsoncpp//:jsoncpp",
+        ":googleapis_http",
+        ":googleapis_internal",
+        ":googleapis_utils",
+        "@boringssl//:ssl",
+    ],
+    strip_include_prefix = "src",
+    copts = ["-Wno-unused-local-typedefs", "-Wno-deprecated-declarations"],
+)
+
+cc_library(
+    name = "googleapis_json",
+    srcs = [
+        "src/googleapis/client/data/serializable_json.cc",
+    ],
+    hdrs = [
+        "src/googleapis/client/data/serializable_json.h",
+    ],
+    strip_include_prefix = "src",
+    deps = [
+        ":googleapis_utils",
+        ":googleapis_internal",
+    ],
+)
+
+cc_library(
+    name = "googleapis_curl_http",
+    hdrs = [
+        "src/googleapis/client/transport/curl_http_transport.h",
+    ],
+    srcs = [
+        "src/googleapis/client/transport/curl_http_transport.cc",
+    ],
+    deps = [
+        ":googleapis_http",
+        ":googleapis_internal",
+        "@com_google_glog//:glog",
+        "@com_github_curl//:curl",
+    ],
+    strip_include_prefix = "src",
+    copts = ["-Wno-sign-compare", "-Wno-unused-local-typedefs"],
+)
+
+cc_library(
     name = "googleapis_http",
     srcs = [
         "src/googleapis/client/auth/credential_store.cc",
@@ -33,6 +89,7 @@ cc_library(
     ],
     deps = [
         ":googleapis_internal",
+        ":googleapis_utils",
         "@com_google_glog//:glog",
     ],
     copts = ["-Wno-unused-local-typedefs", "-Wno-sign-compare"],
@@ -76,6 +133,7 @@ cc_library(
     ],
     deps = [
         ":googleapis_http",
+        ":googleapis_json",
         "@com_google_glog//:glog",
         "@com_github_open_source_parsers_jsoncpp//:jsoncpp",
     ],

@@ -7,6 +7,20 @@ def _maybe(repo_rule, name, **kwargs):
 def repositories():
     _maybe(
         http_archive,
+        name = "boringssl",
+        url = "https://boringssl.googlesource.com/boringssl/+archive/afc30d43eef92979b05776ec0963c9cede5fb80f.tar.gz",
+    )
+
+    _maybe(
+        http_archive,
+        name = "com_github_curl",
+        urls = ["https://github.com/curl/curl/archive/e2ef8d6fa11b2345e10b89db525920f2a0d5fd79.zip"],
+        strip_prefix = "curl-e2ef8d6fa11b2345e10b89db525920f2a0d5fd79",
+        build_file = "@com_github_cschuet_google_api_cpp_client//bazel/third_party/curl:curl.BUILD",
+    )
+
+    _maybe(
+        http_archive,
         name = "com_github_gflags_gflags",
         sha256 = "6e16c8bc91b1310a44f3965e616383dbda48f83e8c1eaa2370a215057b00cabe",
         strip_prefix = "gflags-77592648e3f3be87d6c7123eb81cbad75f9aef5a",
