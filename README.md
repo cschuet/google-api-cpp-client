@@ -7,9 +7,9 @@ Add to your WORKSPACE
 ```
 http_archive(
     name = "com_github_cschuet_google_api_cpp_client",
-    strip_prefix = "google-api-cpp-client-48f08d5e6c8c53bb39a511b50b8b532162a31519",
+    strip_prefix = "google-api-cpp-client-ed16e3f9e26a188bdee35eae385efa4a249c11a2",
     urls = [
-        "https://github.com/cschuet/google-api-cpp-client/archive/48f08d5e6c8c53bb39a511b50b8b532162a31519.tar.gz",
+        "https://github.com/cschuet/google-api-cpp-client/archive/ed16e3f9e26a188bdee35eae385efa4a249c11a2.tar.gz",
     ],
 )
 
